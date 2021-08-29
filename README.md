@@ -1,2 +1,2 @@
 # sprout
-Skeleton code for the Sprout Fellowship '21 project.
+Skeleton code for the ColorStack Sprout Fall '21 pod project.
