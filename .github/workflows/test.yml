@@ -1,0 +1,41 @@
+name: Test Server CI/CD
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        mongodb-version: ['4.4']
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Make .env.development
+        run: echo ${{ secrets.ENV_DEVELOPMENT }} | base64 --decode > .env.development
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.6.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+          mongodb-port: 27017
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format (Prettier)
+        run: npm run format
+
+      - name: Run Tests
+        run: npm run test

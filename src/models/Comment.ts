@@ -44,17 +44,13 @@ const commentSchema: Schema<CommentDocument> = new Schema<CommentDocument>(
   { timestamps: true }
 );
 
-const sendNotification = async function () {
-  /**
-   * TODO: (6.05)
-   * - Send a text to the author of the post notifying them that a podmate
-   * commented under it!
-   */
-};
-
 commentSchema.pre('save', function () {
   if (this.isNew) {
-    sendNotification();
+    /**
+     * TODO: (6.05)
+     * - Send a text to the author of the post notifying them that a podmate
+     * commented under it!
+     */
   }
 });
 

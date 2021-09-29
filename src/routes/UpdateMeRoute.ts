@@ -84,7 +84,7 @@ export default class UpdateMeRoute extends BaseRoute<UserDocument> {
       const currentTimestamp = Date.now();
 
       // Construct the key that will determine where this image is stored.
-      const key = `${APP.SPROUT_ITERATION}/${APP.SQUAD_NAME}/${req.user._id}-${currentTimestamp}`;
+      const key = `${APP.SPROUT_ITERATION}/${APP.POD_NUMBER}/${req.user._id}-${currentTimestamp}`;
 
       // Upload the image to Digital Ocean spaces.
       await ImageService.uploadImage({

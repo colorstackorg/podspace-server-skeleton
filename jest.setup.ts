@@ -11,7 +11,8 @@ let TEST_USER: UserDocument = null;
 let TEST_USER_2: UserDocument = null;
 
 beforeAll(async () => {
-  await mongoose.connect(`${APP.DATABASE_URL}/${APP.SQUAD_NAME}-test`, {
+  await mongoose.connect(`${APP.DATABASE_URL}-test`, {
+    dbName: APP.POD_NUMBER,
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true

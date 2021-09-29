@@ -9,7 +9,8 @@ import { APP } from '../utils/constants';
  * your .env files in order for the database to connect properly.
  */
 const connectToDB = async (): Promise<void> => {
-  await mongoose.connect(`${APP.DATABASE_URL}/${APP.SQUAD_NAME}`, {
+  await mongoose.connect(APP.DATABASE_URL, {
+    dbName: APP.POD_NUMBER,
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true

@@ -66,6 +66,8 @@ export const APP = {
    */
   JWT_SECRET: process.env.JWT_SECRET,
 
+  POD_NUMBER: process.env.POD_NUMBER,
+
   /**
    * Port on our computers that the backend application is running on.
    */
@@ -79,14 +81,6 @@ export const APP = {
    * @example fa-2022
    */
   SPROUT_ITERATION: process.env.SPROUT_ITERATION,
-
-  /**
-   * NAME OF YOUR SQUAD BABYYYY! This shouldn't have any spaces in it, though!
-   *
-   * @example cat-lovers
-   * @example looney-toones
-   */
-  SQUAD_NAME: process.env.SQUAD_NAME,
 
   /**
    * ID of the Twilio account that we are using to send text messages.
