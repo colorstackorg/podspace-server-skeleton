@@ -1,6 +1,7 @@
 module.exports = {
   extends: ['rami'],
   ignorePatterns: ['/*config.js', '/*rc.js'],
+  parserOptions: { project: './tsconfig.eslint.json' },
   overrides: [
     {
       files: ['src/models/*.ts'],
@@ -15,7 +16,6 @@ module.exports = {
       rules: { 'max-lines-per-function': 0 }
     }
   ],
-  parserOptions: { project: './tsconfig.eslint.json' },
   rules: {
     '@typescript-eslint/ban-types': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
