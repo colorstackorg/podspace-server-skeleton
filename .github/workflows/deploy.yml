@@ -23,6 +23,10 @@ jobs:
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
+      - name: Read Docker Image Identifiers
+        id: read-docker-image-identifiers
+        run: echo ::set-env name=IMAGE_REPOSITORY::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+
       - name: Docker Build & Push
         uses: docker/build-push-action@v2
         with:
@@ -30,7 +34,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ env.IMAGE_REPOSITORY }}:latest
 
       - name: Remote SSH and Deploy
         uses: appleboy/ssh-action@master
@@ -41,7 +45,7 @@ jobs:
           script: |
             echo ${{ secrets.ENV_PRODUCTION }} | base64 --decode > .env.production-${{ secrets.POD_NUMBER }}
             docker login https://ghcr.io -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }}
-            docker pull ghcr.io/${{ github.repository }}:latest
+            docker pull ghcr.io/${{ env.IMAGE_REPOSITORY }}:latest
             docker container rm -f podspace-${{ secrets.POD_NUMBER }} || true
-            docker run --env-file .env.production-${{ secrets.POD_NUMBER }} -d -p ${{ secrets.SERVER_PORT }}:8080 --restart on-failure --name=podspace-${{ secrets.POD_NUMBER }} ghcr.io/${{ github.repository }}:latest
+            docker run --env-file .env.production-${{ secrets.POD_NUMBER }} -d -p ${{ secrets.SERVER_PORT }}:8080 --restart on-failure --name=podspace-${{ secrets.POD_NUMBER }} ghcr.io/${{ env.IMAGE_REPOSITORY }}:latest
             rm .env.production-${{ secrets.POD_NUMBER }}
