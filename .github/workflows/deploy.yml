@@ -47,5 +47,5 @@ jobs:
             docker login https://ghcr.io -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }}
             docker pull ghcr.io/${{ env.IMAGE_REPOSITORY }}:latest
             docker container rm -f podspace-${{ secrets.POD_NUMBER }} || true
-            docker run --env-file .env.production-${{ secrets.POD_NUMBER }} -d -p ${{ secrets.SERVER_PORT }}:8080 --restart on-failure --name=podspace-${{ secrets.POD_NUMBER }} ghcr.io/${{ github.repository }}:latest
+            docker run --env-file .env.production-${{ secrets.POD_NUMBER }} -d -p ${{ secrets.SERVER_PORT }}:8080 --restart on-failure --name=podspace-${{ secrets.POD_NUMBER }} ghcr.io/${{ env.IMAGE_REPOSITORY }}:latest
             rm .env.production-${{ secrets.POD_NUMBER }}
