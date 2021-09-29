@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "outDir": "./dist",
+    "target": "es2018"
+  },
+  "include": ["src/**/*.ts", "./*.config.ts", "./jest.setup.ts"],
+  "exclude": ["node_modules", "src/**/*.test.ts"],
+  "typeRoots": ["./node_modules/@types"]
+}
