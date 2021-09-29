@@ -12,6 +12,6 @@ export default class HelloWorldRoute extends BaseRoute<string> {
   }
 
   async content(): Promise<string> {
-    return 'Looks like the server is up and running!';
+    return 'HELLO JEHRONICUS!';
   }
 }
