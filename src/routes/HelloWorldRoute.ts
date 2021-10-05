@@ -13,13 +13,13 @@ export default class HelloWorldRoute extends BaseRoute<HelloWorldResult> {
     super({
       method: RouteMethod.GET,
       path: '/hello'
-    });
+    })
   }
 
   async content(): Promise<HelloWorldResult> {
     return {
       message: 'Looks like the server is up and running!',
-      podmates: []
+      podmates: ['Chioma Okechukwu']
     };
   }
 }
