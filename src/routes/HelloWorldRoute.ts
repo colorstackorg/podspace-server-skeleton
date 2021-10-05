@@ -20,6 +20,7 @@ export default class HelloWorldRoute extends BaseRoute<HelloWorldResult> {
     return {
       message: 'Looks like the server is up and running!',
       podmates: ['Alejandra Hernandez']
+      podmates: ['Folaoluwakemi Shofu']
     };
   }
 }
