@@ -7,22 +7,12 @@ import { CommentDocument } from './Comment';
 import { ReactionDocument } from './Reaction';
 import User, { UserDocument } from './User';
 
-/**
- * TODO: (3.01)
- * - Read this enum.
- * - Delete this comment.
- */
 export enum PostType {
   HELP = 'HELP', // Asking for help...
   TIL = 'TIL', // Today I learned...
   WIN = 'WIN' // Sharing a win...
 }
 
-/**
- * TODO: (3.02)
- * - Read this interface.
- * - Delete this comment once you've done so.
- */
 interface IPost extends BaseModel {
   /**
    * User that is associated with the creation of the post.
@@ -62,7 +52,11 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
      * - Delete this comment and the example field.
      * - Add comment(s) to explain your work.
      */
-    exampleField: { required: true, type: String }
+    author: { required: true, type: String, unique: true }, // we have to know who is posting so this field would be required
+    comments: { required: true, type: String }, // eneable to see
+    content: { required: true, type: String }, // Content would depend if we want to be able to create empty post but since this is a social media platform it will be required for now
+    reactions: { required: true, type: String },
+    type: { required: false, type: String }
   },
   {
     timestamps: true,
