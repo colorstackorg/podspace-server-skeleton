@@ -47,13 +47,6 @@ export type PostDocument = Document<{}, {}, IPost> & IPost;
 
 const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
   {
-    /**
-     * TODO: (3.03)
-     * - Create the schema for the Posts that we'll save in the database using
-     * the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
-     */
     author: { required: true, type: String }, // we have to know who is posting so this field would be required
     comments: { required: false, type: String }, // eneable to see comments have type of string and are required
     content: { required: true, type: String }, // Content needs to be required for post and should be string
