@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+import { ObjectId } from 'bson';
 import mongoose, { Document, PopulatedDoc, Schema } from 'mongoose';
 
 import TextService from '../services/TextService';
@@ -7,22 +9,12 @@ import { CommentDocument } from './Comment';
 import { ReactionDocument } from './Reaction';
 import User, { UserDocument } from './User';
 
-/**
- * TODO: (3.01)
- * - Read this enum.
- * - Delete this comment.
- */
 export enum PostType {
   HELP = 'HELP', // Asking for help...
   TIL = 'TIL', // Today I learned...
   WIN = 'WIN' // Sharing a win...
 }
 
-/**
- * TODO: (3.02)
- * - Read this interface.
- * - Delete this comment once you've done so.
- */
 interface IPost extends BaseModel {
   /**
    * User that is associated with the creation of the post.
@@ -62,7 +54,11 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
      * - Delete this comment and the example field.
      * - Add comment(s) to explain your work.
      */
-    exampleField: { required: true, type: String }
+    author: { required: true, type: String }, // we have to know who is posting so this field would be required
+    comments: { required: false, type: String }, // eneable to see comments have type of string and are required
+    content: { required: true, type: String }, // Content needs to be required for post and should be string
+    reactions: { required: false, type: String }, // not all post  should have reactions
+    type: { required: false, type: String }
   },
   {
     timestamps: true,
