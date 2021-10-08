@@ -35,7 +35,7 @@ const commentSchema: Schema<CommentDocument> = new Schema<CommentDocument>(
      *  The content field is a string, default to empty since not all
      *  comments may have actual content. ex. Comment deleted
      *
-     *  Todo: type is current ObjectID, not sure if it should be ID
+     *  Todo: type is current ObjectID, not sure if it should be ID.
      */
 
     author: { ref: Model.USER, required: true, type: ObjectID },
