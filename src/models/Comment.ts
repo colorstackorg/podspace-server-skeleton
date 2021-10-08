@@ -1,3 +1,4 @@
+import { ObjectID } from 'bson';
 import mongoose, { Document, PopulatedDoc, Schema } from 'mongoose';
 
 import TextService from '../services/TextService';
@@ -6,11 +7,6 @@ import { BaseModel, ID } from '../utils/types';
 import Post, { PostDocument } from './Post';
 import User, { UserDocument } from './User';
 
-/**
- * TODO: (5.01)
- * - Read this interface.
- * - Delete this comment once you've done so.
- */
 interface IComment extends BaseModel {
   /**
    * User that is associated with the creation of the comment.
@@ -33,13 +29,18 @@ export type CommentDocument = Document<{}, {}, IComment> & IComment;
 const commentSchema: Schema<CommentDocument> = new Schema<CommentDocument>(
   {
     /**
-     * (5.02) TODO:
-     * - Create the schema for the Comments that we'll save in the database using
-     * the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
+     *  The commentSchema has three fields.
+     *  For a comment, all three fields are required.
+     *  The author and post field come from other schemas.
+     *  The content field is a string, default to empty since not all
+     *  comments may have actual content. ex. Comment deleted
+     *
+     *  Todo: type is current ObjectID, not sure if it should be ID
      */
-    author: { ref: Model.USER, required: true, type: ID }
+
+    author: { ref: Model.USER, required: true, type: ObjectID },
+    content: { required: true, type: String, default: '' },
+    post: { ref: Model.POST, required: true, type: ObjectID }
   },
   { timestamps: true }
 );
