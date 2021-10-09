@@ -41,9 +41,9 @@ const reactionSchema: Schema<ReactionDocument> = new Schema<ReactionDocument>(
      * Check to confirm reaction type datatype
      * Check to confirm type of user
      */
-    post: { required: true, type: String },
+    post: { ref: Model.POST, required: true, type: ID },
     type: { default: ReactionType.HEART, required: false },
-    user: { required: true, type: String }
+    user: { ref: Model.USER, required: true, type: ID }
   },
   { timestamps: true }
 );

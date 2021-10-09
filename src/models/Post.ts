@@ -57,11 +57,11 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
      * Check the variable declaration for reactions
      * Ask about the Type variable
      */
-    author: { required: true, type: String },
-    comments: { required: false, type: String },
+    author: { ref: Model.USER, required: true, type: ID },
+    comments: { ref: Model.COMMENT, required: false, type: ID },
     content: { required: true, type: String },
     // Check and confirm data type of reactions
-    reactions: { required: false, type: String },
+    reactions: { ref: Model.COMMENT, required: false, type: ID },
     // Data Type of type is Post
     type: { required: false, select: false, type: PostType }
   },
