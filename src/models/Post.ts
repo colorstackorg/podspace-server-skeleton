@@ -58,12 +58,10 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
      * Ask about the Type variable
      */
     author: { ref: Model.USER, required: true, type: ID },
-    comments: { ref: Model.COMMENT, required: false, type: ID },
     content: { required: true, type: String },
     // Check and confirm data type of reactions
-    reactions: { ref: Model.COMMENT, required: false, type: ID },
     // Data Type of type is Post
-    type: { required: false, select: false, type: PostType }
+    type: { required: true, type: PostType }
   },
   {
     timestamps: true,
@@ -113,3 +111,5 @@ const Post: mongoose.Model<PostDocument> = mongoose.model<PostDocument>(
 );
 
 export default Post;
+
+// mongodb://127.0.0.1:27017
