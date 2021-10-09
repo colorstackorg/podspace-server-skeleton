@@ -34,12 +34,10 @@ const commentSchema: Schema<CommentDocument> = new Schema<CommentDocument>(
   {
     /**
      * (5.02) TODO:
-     * - Create the schema for the Comments that we'll save in the database using
-     * the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
      */
-    exampleField: { ref: Model.USER, required: false, type: ID, unique: false }
+    author: { ref: Model.USER, required: true, type: ID, unique: false },
+    content: { required: true, type: String },
+    post: { ref: Model.USER, required: true, type: ID }
   },
   { timestamps: true }
 );
