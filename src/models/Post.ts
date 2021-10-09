@@ -61,7 +61,7 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
     comments: { required: false, type: String },
     content: { required: true, type: String },
     // Check and confirm data type of reactions
-    reactions: { required: false, type: Symbol },
+    reactions: { required: false, type: String },
     // Data Type of type is Post
     type: { required: false, select: false, type: PostType }
   },
