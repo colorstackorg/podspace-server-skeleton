@@ -53,7 +53,6 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
   {
     /**
      * TODO: (3.03)
-     * - Add comment(s) to explain your work.
      * Created the schema with 4 fields, author, comments, content, reactions
      * Check the variable declaration for reactions
      * Ask about the Type variable
