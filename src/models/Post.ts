@@ -57,13 +57,12 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
   {
     /**
      * TODO: (3.03)
-     * Check if rtype for related DBs is correcnt
+     * - Create the schema for the Posts that we'll save in the database using
+     * the interface above as a reference.
+     * - Delete this comment and the example field.
+     * - Add comment(s) to explain your work.
      */
-    author: { ref: Model.USER, required: true, type: ID },
-    comments: { ref: Model.COMMENT, required: true, type: ID },
-    content: { required: true, type: String },
-    reactions: { ref: Model.REACTION, required: false, type: ID },
-    type: { required: false, type: PostType }
+    exampleField: { required: true, type: String }
   },
   {
     timestamps: true,
