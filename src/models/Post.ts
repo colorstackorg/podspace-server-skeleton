@@ -9,8 +9,7 @@ import User, { UserDocument } from './User';
 
 /**
  * TODO: (3.01)
- * - Read this enum.
- * - Delete this comment.
+ * Done
  */
 export enum PostType {
   HELP = 'HELP', // Asking for help...
@@ -18,10 +17,7 @@ export enum PostType {
   WIN = 'WIN' // Sharing a win...
 }
 
-/**
- * TODO: (3.02)
- * - Read this interface.
- * - Delete this comment once you've done so.
+/*
  */
 interface IPost extends BaseModel {
   /**
@@ -57,17 +53,18 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
   {
     /**
      * TODO: (3.03)
-     * - Create the schema for the Posts that we'll save in the database using
-     * the interface above as a reference.
-     * - Delete this comment and the example field.
      * - Add comment(s) to explain your work.
      * Created the schema with 4 fields, author, comments, content, reactions
      * Check the variable declaration for reactions
+     * Ask about the Type variable
      */
     author: { required: true, type: String },
     comments: { required: false, type: String },
     content: { required: true, type: String },
-    reactions: { required: false, type: Symbol }
+    // Check and confirm data type of reactions
+    reactions: { required: false, type: Symbol },
+    // Data Type of type is Post
+    type: { required: false, select: false, type: PostType }
   },
   {
     timestamps: true,

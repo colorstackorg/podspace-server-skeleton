@@ -5,11 +5,6 @@ import { BaseModel, ID } from '../utils/types';
 import { PostDocument } from './Post';
 import { UserDocument } from './User';
 
-/**
- * TODO: (4.01)
- * - Read this enum.
- * - Delete this comment.
- */
 export enum ReactionType {
   FIRE = 'FIRE', // 🔥
   HEART = 'HEART', // 💖
@@ -18,11 +13,6 @@ export enum ReactionType {
   SAD = 'SAD' // 😢
 }
 
-/**
- * TODO: (4.02)
- * - Read this interface.
- * - Delete this comment once you've done so.
- */
 interface IReaction extends BaseModel {
   /**
    * Post that was "reacted" to.
@@ -48,12 +38,12 @@ const reactionSchema: Schema<ReactionDocument> = new Schema<ReactionDocument>(
   {
     /**
      * TODO: (3.03)
-     * - Create the schema for the Reactions that we'll save in the database
-     * using the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
+     * Check to confirm reaction type datatype
+     * Check to confirm type of user
      */
-    exampleField: { required: true, type: String }
+    post: { required: true, type: String },
+    type: { default: ReactionType.HEART, required: false },
+    user: { required: true, type: String }
   },
   { timestamps: true }
 );
@@ -62,3 +52,9 @@ const Reaction: mongoose.Model<ReactionDocument> =
   mongoose.model<ReactionDocument>(Model.REACTION, reactionSchema);
 
 export default Reaction;
+/*
+ * Check the variable declaration for reactions
+ * Ask about the Type variable
+ * Check to confirm reaction type datatype
+ * Check to confirm type of user
+ */
