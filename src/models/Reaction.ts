@@ -48,12 +48,11 @@ const reactionSchema: Schema<ReactionDocument> = new Schema<ReactionDocument>(
   {
     /**
      * TODO: (3.03)
-     * - Create the schema for the Reactions that we'll save in the database
-     * using the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
+     * Check reaction type
      */
-    exampleField: { required: true, type: String }
+    post: { ref: Model.POST, required: true, type: String },
+    type: { defaulf: ReactionType.HEART, required: true, type: ReactionType },
+    user: { ref: Model.USER, required: true, type: ID }
   },
   { timestamps: true }
 );
