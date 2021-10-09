@@ -8,7 +8,7 @@ import { UserDocument } from './User';
 /**
  * TODO: (4.01)
  * - Read this enum.
- * - Delete this comment.
+ * - Delete this comment
  */
 export enum ReactionType {
   FIRE = 'FIRE', // 🔥
