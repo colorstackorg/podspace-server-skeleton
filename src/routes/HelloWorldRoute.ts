@@ -3,7 +3,7 @@ import { RouteMethod } from '../utils/constants';
 
 type HelloWorldResult = {
   message: string;
-  podmates: string[];
+  podmates: string[];    
 };
 
 // This is just a "dummy" endpoint that we can send a GET request to, to ensure
@@ -19,7 +19,7 @@ export default class HelloWorldRoute extends BaseRoute<HelloWorldResult> {
   async content(): Promise<HelloWorldResult> {
     return {
       message: 'Looks like the server is up and running!',
-      podmates: ['Joan B Nandaula']
+      podmates: ['Joan B Nandaula', 'Ana K Leonardo']
     };
   }
 }
