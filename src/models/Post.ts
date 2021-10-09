@@ -61,8 +61,13 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
      * the interface above as a reference.
      * - Delete this comment and the example field.
      * - Add comment(s) to explain your work.
+     * Created the schema with 4 fields, author, comments, content, reactions
+     * Check the variable declaration for reactions
      */
-    exampleField: { required: true, type: String }
+    author: { required: true, type: String },
+    comments: { required: false, type: String },
+    content: { required: true, type: String },
+    reactions: { required: false, type: Symbol }
   },
   {
     timestamps: true,
