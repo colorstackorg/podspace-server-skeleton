@@ -62,3 +62,5 @@ const Reaction: mongoose.Model<ReactionDocument> =
   mongoose.model<ReactionDocument>(Model.REACTION, reactionSchema);
 
 export default Reaction;
+
+// mongodb://127.0.0.1:27017
