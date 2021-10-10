@@ -34,13 +34,12 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
   /**
    * (1.03) TODO:
    * - Create the schema for the AuthCodes that we'll save in the database.
-   * - Delete this comment and the example field.
    * - Add comment(s) to explain your work.
    */
+
+  // Schema created based on IAuthCode
   {
-    // Here's an example of how to add a field to the schema.
     phoneNumber: { required: true, type: String, unique: true },
-    
     value: { default: AuthUtils.generateOTP, required: true, type: Number }
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
@@ -55,6 +54,8 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
  * - Once you find something, add the code to this document and include a link
  * to the code you found in a comment.
  * */
+
+// pulled from ColorStack notion helpful info
 authCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 5 });
 
 const AuthCode: mongoose.Model<AuthCodeDocument> =
