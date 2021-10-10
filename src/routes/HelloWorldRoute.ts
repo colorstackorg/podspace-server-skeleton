@@ -3,7 +3,7 @@ import { RouteMethod } from '../utils/constants';
 
 type HelloWorldResult = {
   message: string;
-  podmates: string[];    
+  podmates: string[];
 };
 
 // This is just a "dummy" endpoint that we can send a GET request to, to ensure
