@@ -53,6 +53,5 @@ export default Reaction;
  * Check to confirm reaction type datatype
  * Check to confirm type of user
  */
-=======
 
 // mongodb://127.0.0.1:27017
