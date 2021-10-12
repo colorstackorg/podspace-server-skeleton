@@ -48,10 +48,4 @@ const Reaction: mongoose.Model<ReactionDocument> =
 
 export default Reaction;
 
- /* Check the variable declaration for reactions
- * Ask about the Type variable
- * Check to confirm reaction type datatype
- * Check to confirm type of user
- */
-
 // mongodb://127.0.0.1:27017
