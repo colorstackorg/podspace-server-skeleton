@@ -46,10 +46,7 @@ export type PostDocument = Document<{}, {}, IPost> & IPost;
 const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
   {
     author: { ref: Model.USER, required: true, type: ID },
-    comments: { ref: Model.COMMENT, required: true, type: String },
-    content: { required: true, type: String },
-    reactions: { ref: Model.REACTION, required: false, type: String },
-    type: { required: true, type: String, unique: true }
+    content: { required: true, type: String }
   },
   {
     timestamps: true,
