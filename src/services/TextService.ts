@@ -2,11 +2,6 @@ import twilio, { Twilio } from 'twilio';
 
 import { APP } from '../utils/constants';
 
-/**
- * TODO: (6.01):
- * - Add your twilio account id, auth token, and phone number to your
- * .env.development file.
- */
 export const client: Twilio = twilio(
   APP.TWILIO_ACCOUNT_SID,
   APP.TWILIO_AUTH_TOKEN
@@ -33,15 +28,16 @@ const sendText = async ({ message, to }: SendTextArgs): Promise<boolean> => {
   // to send while in development, simply comment out this line.
   // if (!APP.IS_PRODUCTION) return true;
 
-  /**
-   * TODO: (6.03)
-   * - Send the {message} to {to} and return true if we successfully do so.
-   */
-
   try {
     // Send the text
+    await client.messages.create({
+      body: message,
+      from: APP.TWILIO_PHONE_NUMBER,
+      to
+    });
   } catch (e) {
     // What should be return if sending the text was unsuccessful?
+    return false;
   }
 
   return true;

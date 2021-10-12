@@ -36,11 +36,6 @@ export type ReactionDocument = Document<{}, {}, IReaction> & IReaction;
 
 const reactionSchema: Schema<ReactionDocument> = new Schema<ReactionDocument>(
   {
-    /**
-     * TODO: (3.03)
-     * Check to confirm reaction type datatype
-     * Check to confirm type of user
-     */
     post: { ref: Model.POST, required: true, type: ID },
     type: { default: ReactionType.HEART, required: false, type: String },
     user: { ref: Model.USER, required: true, type: ID }
@@ -52,9 +47,12 @@ const Reaction: mongoose.Model<ReactionDocument> =
   mongoose.model<ReactionDocument>(Model.REACTION, reactionSchema);
 
 export default Reaction;
-/*
- * Check the variable declaration for reactions
+
+ /* Check the variable declaration for reactions
  * Ask about the Type variable
  * Check to confirm reaction type datatype
  * Check to confirm type of user
  */
+=======
+
+// mongodb://127.0.0.1:27017
