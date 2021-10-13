@@ -6,7 +6,6 @@ import { BaseModel, ID } from '../utils/types';
 import Post, { PostDocument } from './Post';
 import User, { UserDocument } from './User';
 
-
 interface IComment extends BaseModel {
   /**
    * User that is associated with the creation of the comment.
@@ -30,7 +29,7 @@ const commentSchema: Schema<CommentDocument> = new Schema<CommentDocument>(
   {
     author: { ref: Model.USER, required: true, type: ID },
     content: { required: true, type: String },
-    post: {ref: Model.POST, required: true, type: ID }
+    post: { ref: Model.POST, required: true, type: ID }
   },
   { timestamps: true }
 );
