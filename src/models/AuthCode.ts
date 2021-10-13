@@ -1,3 +1,4 @@
+import { string } from 'mathjs';
 import mongoose, { Document, Schema } from 'mongoose';
 
 import AuthUtils from '../utils/AuthUtils';
@@ -39,7 +40,9 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
    */
   {
     // Here's an example of how to add a field to the schema.
-    exampleField: { required: true, type: String, unique: false }
+    // exampleField: { required: true, type: String, unique: false }
+    phoneNumber: { required: true, type: String, unique: true },
+    value: { default: AuthUtils.generateOTP, required: true, type: String }
   },
   { timestamps: true }
 );
@@ -53,6 +56,7 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
  * - Once you find something, add the code to this document and include a link
  * to the code you found in a comment.
  * */
+authCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 2 });
 
 const AuthCode: mongoose.Model<AuthCodeDocument> =
   mongoose.model<AuthCodeDocument>(Model.AUTH_CODE, authCodeSchema);
