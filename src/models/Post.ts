@@ -7,7 +7,6 @@ import { CommentDocument } from './Comment';
 import { ReactionDocument } from './Reaction';
 import User, { UserDocument } from './User';
 
-
 export enum PostType {
   HELP = 'HELP', // Asking for help...
   TIL = 'TIL', // Today I learned...
@@ -70,7 +69,6 @@ const sendNotification = async function (
    * - Send a text to all the users except for the author of this post letting
    * them know that their podmate shared an update!
    */
-  
 };
 
 postSchema.pre('save', function () {
