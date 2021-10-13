@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import mongoose, { Document, PopulatedDoc, Schema } from 'mongoose';
 
 import TextService from '../services/TextService';
@@ -7,11 +8,6 @@ import { CommentDocument } from './Comment';
 import { ReactionDocument } from './Reaction';
 import User, { UserDocument } from './User';
 
-/**
- * TODO: (3.01)
- * - Read this enum.
- * - Delete this comment.
- */
 export enum PostType {
   HELP = 'HELP', // Asking for help...
   TIL = 'TIL', // Today I learned...
@@ -48,21 +44,16 @@ interface IPost extends BaseModel {
    * Type of the post that was created. This can be null, if no PostType
    * if specified.
    */
-  type?: PostType;
+  type?: PostType; // ? means optional.
 }
 
 export type PostDocument = Document<{}, {}, IPost> & IPost;
 
 const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
   {
-    /**
-     * TODO: (3.03)
-     * - Create the schema for the Posts that we'll save in the database using
-     * the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
-     */
-    exampleField: { required: true, type: String }
+    author: { ref: Model.USER, required: true, type: ID }, // author will be referenced by USER model, it is required and it's type is an ID
+    content: { required: true, type: String }, // content is required and it will be a string
+    type: { required: false, type: String } // type is not required, and would be a string
   },
   {
     timestamps: true,
@@ -79,6 +70,7 @@ const sendNotification = async function (
    * - Send a text to all the users except for the author of this post letting
    * them know that their podmate shared an update!
    */
+  const allUsers: UserDocument[] = await User.find(); // type of user variable will be an array of user documents (UserDocument[]) and in order to populate the array must call an await function called User.find() (Mongoose command)
 };
 
 postSchema.pre('save', function () {
