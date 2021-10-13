@@ -7,11 +7,7 @@ import { CommentDocument } from './Comment';
 import { ReactionDocument } from './Reaction';
 import User, { UserDocument } from './User';
 
-/**
- * TODO: (3.01)
- * - Read this enum.
- * - Delete this comment.
- */
+
 export enum PostType {
   HELP = 'HELP', // Asking for help...
   TIL = 'TIL', // Today I learned...
@@ -55,14 +51,9 @@ export type PostDocument = Document<{}, {}, IPost> & IPost;
 
 const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
   {
-    /**
-     * TODO: (3.03)
-     * - Create the schema for the Posts that we'll save in the database using
-     * the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
-     */
-    exampleField: { required: true, type: String }
+    author: { ref: Model.USER, required: true, type: ID },
+    content: { required: true, type: String },
+    type: { required: false, type: String }
   },
   {
     timestamps: true,
@@ -79,6 +70,7 @@ const sendNotification = async function (
    * - Send a text to all the users except for the author of this post letting
    * them know that their podmate shared an update!
    */
+  
 };
 
 postSchema.pre('save', function () {
