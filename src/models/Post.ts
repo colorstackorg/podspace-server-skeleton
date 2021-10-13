@@ -1,4 +1,5 @@
 import mongoose, { Document, PopulatedDoc, Schema } from 'mongoose';
+import { MemberContext } from 'twilio/lib/rest/api/v2010/account/queue/member';
 
 import TextService from '../services/TextService';
 import { Model } from '../utils/constants';
@@ -7,22 +8,11 @@ import { CommentDocument } from './Comment';
 import { ReactionDocument } from './Reaction';
 import User, { UserDocument } from './User';
 
-/**
- * TODO: (3.01)
- * - Read this enum.
- * - Delete this comment.
- */
 export enum PostType {
   HELP = 'HELP', // Asking for help...
   TIL = 'TIL', // Today I learned...
   WIN = 'WIN' // Sharing a win...
 }
-
-/**
- * TODO: (3.02)
- * - Read this interface.
- * - Delete this comment once you've done so.
- */
 interface IPost extends BaseModel {
   /**
    * User that is associated with the creation of the post.
@@ -62,7 +52,9 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
      * - Delete this comment and the example field.
      * - Add comment(s) to explain your work.
      */
-    exampleField: { required: true, type: String }
+    author: { ref: Model.USER, required: true, type: ID },
+    content: { required: true, type: String },
+    type: { required: false, type: string }
   },
   {
     timestamps: true,
@@ -79,6 +71,16 @@ const sendNotification = async function (
    * - Send a text to all the users except for the author of this post letting
    * them know that their podmate shared an update!
    */
+  const allUsers: UserDocument[] = await User.find();
+
+  allUsers.map((user) => {
+    if (user !== author) {
+      TextService.sendText({
+        message: 'One of your podmates has shared a post',
+        to: user.phoneNumber
+      });
+    }
+  });
 };
 
 postSchema.pre('save', function () {
