@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import mongoose, { Document, PopulatedDoc, Schema } from 'mongoose';
 
 import TextService from '../services/TextService';
@@ -39,7 +40,9 @@ const commentSchema: Schema<CommentDocument> = new Schema<CommentDocument>(
      * - Delete this comment and the example field.
      * - Add comment(s) to explain your work.
      */
-    exampleField: { ref: Model.USER, required: false, type: ID, unique: false }
+    author: { ref: Model.USER, required: true, type: ID },
+    content: { required: true, type: String },
+    post: { ref: Model.POST, required: true, type: ID }
   },
   { timestamps: true }
 );
