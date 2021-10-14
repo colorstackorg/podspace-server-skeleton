@@ -3,7 +3,7 @@ import mongoose, { Document, models, PopulatedDoc, Schema } from 'mongoose';
 import { Model } from '../utils/constants';
 import { BaseModel, ID } from '../utils/types';
 import { PostDocument } from './Post';
-import User, { UserDocument } from './User';
+import { UserDocument } from './User';
 
 export enum ReactionType {
   FIRE = 'FIRE', // 🔥
@@ -36,13 +36,6 @@ export type ReactionDocument = Document<{}, {}, IReaction> & IReaction;
 
 const reactionSchema: Schema<ReactionDocument> = new Schema<ReactionDocument>(
   {
-    /**
-     * TODO: (3.03)
-     * - Create the schema for the Reactions that we'll save in the database
-     * using the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
-     */
     post: { ref: Model.POST, required: true, type: ID },
     type: { default: ReactionType.HEART, required: true, type: String },
     user: { ref: Model.USER, required: true, type: ID}
