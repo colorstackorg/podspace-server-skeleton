@@ -31,8 +31,8 @@ export type AuthCodeDocument = Document<{}, {}, IAuthCode> & IAuthCode;
  */
 const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
   {
-    value: { required: true, type: Number, default: AuthUtils.generateOTP },
-    phoneNumber: { required: true, type: String, unique: true }
+    phoneNumber: { required: true, type: String, unique: true },
+    value: { default: AuthUtils.generateOTP, required: true, type: Number}    
   },
   { timestamps: true }
 );
