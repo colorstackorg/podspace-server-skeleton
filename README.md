@@ -5,3 +5,5 @@ Skeleton code for the ColorStack Sprout Fall '21 pod project. PodSpace is a priv
 ## Collaborators
 
 Jeremiah Anim / CS @ JWU '23
+Lorena Burrell / CS @ GSU
+Colby Thompson / CS @ Cornell '23
