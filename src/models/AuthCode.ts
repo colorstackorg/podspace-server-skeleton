@@ -38,6 +38,7 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
 );
 
 authCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 300 });
+
 const AuthCode: mongoose.Model<AuthCodeDocument> =
   mongoose.model<AuthCodeDocument>(Model.AUTH_CODE, authCodeSchema);
 
