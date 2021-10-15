@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ApplicationRequest } from '../utils/ApplicationRequest';
 import AuthUtils from '../utils/AuthUtils';
 import BaseRoute from '../utils/BaseRoute';
@@ -13,8 +14,8 @@ export default class IsAuthenticatedRoute extends BaseRoute<boolean> {
        * - Fill in the path string with the appropriate path to this endpoint.
        * - Delete this comment.
        */
-      method: null,
-      path: '/'
+      method: RouteMethod.GET,
+      path: '/user'
     });
   }
 
@@ -30,9 +31,13 @@ export default class IsAuthenticatedRoute extends BaseRoute<boolean> {
   async content(req: ApplicationRequest): Promise<boolean> {
     // TODO: (10.05) Get the accessToken and refreshToken from the request
     // using req.cookies.
+    const { accessToken, refreshToken } = req.cookies ?? {};
 
     // TODO: (10.06) If either the accessToken or the refreshToken are verified,
     // return true!
+    if (refreshToken.verfifyToken || accessToken.verifyToken) {
+      return true;
+    }
     return false;
   }
 }

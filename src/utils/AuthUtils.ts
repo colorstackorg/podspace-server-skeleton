@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import jwt, { SignOptions } from 'jsonwebtoken';
 import { floor, random } from 'mathjs';
 

@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 import { UserDocument } from '../models/User';
 import { ApplicationRequest } from '../utils/ApplicationRequest';
 import BaseRoute from '../utils/BaseRoute';
@@ -7,17 +9,9 @@ import { IdArgs } from '../utils/types';
 export default class GetMeRoute extends BaseRoute<UserDocument> {
   constructor() {
     super({
-      /**
-       * TODO: (10.01)
-       * - Should the user be authenticated to hit this route?
-       * - Replace null with the correct route type from the RouteMethod enum
-       * in the constants.ts file.
-       * - Fill in the path string with the appropriate path to this endpoint.
-       * - Delete this comment.
-       */
-      authenticated: true,
-      method: null,
-      path: '/'
+      authenticated: true, // since it is an author they have to be authenticated
+      method: RouteMethod.GET, // we are sending a GET request so we have to use the GET routeMethod
+      path: '/user' // since an author is a user the path will be from a user
     });
   }
 
@@ -26,6 +20,7 @@ export default class GetMeRoute extends BaseRoute<UserDocument> {
    */
   async content(req: ApplicationRequest<IdArgs>): Promise<UserDocument> {
     // TODO: (10.02) Return the user object from the request!
-    return null;
+
+    return req.user.id;
   }
 }

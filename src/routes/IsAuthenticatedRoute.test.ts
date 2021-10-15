@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { TEST_AUTH_COOKIE } from '../../jest.setup';
 import TestUtils from '../utils/TestUtils';
 
@@ -8,8 +9,8 @@ import TestUtils from '../utils/TestUtils';
  *        npm run test IsAuthenticated
  * - Delete this comment.
  */
-describe.skip('GET /authenticated', () => {
-  test('If the user IS NOT authenticated, should return a 200 with false.', async () => {
+describe('GET /authenticated', () => {
+  test.only('If the user IS NOT authenticated, should return a 200 with false.', async () => {
     await TestUtils.agent
       .get('/authenticated')
       .expect(200)
