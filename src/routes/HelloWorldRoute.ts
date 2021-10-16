@@ -13,7 +13,7 @@ export default class HelloWorldRoute extends BaseRoute<HelloWorldResult> {
     super({
       method: RouteMethod.GET,
       path: '/hello'
-    })
+    });
   }
 
   async content(): Promise<HelloWorldResult> {
