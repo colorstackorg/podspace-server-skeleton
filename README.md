@@ -8,4 +8,4 @@ Jeremiah Anim / CS @ JWU '23
 Lorena Burrell / CS @ GSU
 Ekow Thompson / CS @UA
 Tarah Thompson / CS @GT
-Edwin Garcia-Flores / CpE @UC'22
+Edwin Garcia-Flores / CpE @UC'22 

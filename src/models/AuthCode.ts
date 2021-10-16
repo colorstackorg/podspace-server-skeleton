@@ -39,9 +39,12 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
 
   // Schema created based on IAuthCode
   {
-    phoneNumber: { required: true, type: String, unique: true },
+    // phoneNumber: { required: true, type: String, unique: true },
+    phoneNumer: {required: true, type: String, unique: true},
+    // value: { default: AuthUtils.generateOTP, required: true, type: Number }
     value: { default: AuthUtils.generateOTP, required: true, type: Number }
   },
+  // { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
@@ -56,6 +59,7 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
  * */
 
 // pulled from ColorStack notion helpful info
+// authCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 5 });
 authCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 5 });
 
 const AuthCode: mongoose.Model<AuthCodeDocument> =
