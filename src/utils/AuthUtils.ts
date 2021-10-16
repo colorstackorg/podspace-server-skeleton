@@ -14,7 +14,8 @@ const generateOTP = (): number => {
    * - Make sure tall the tests pass.
    * - Delete this comment.
    */
-  return 123456;
+  return Math.floor(100000 + Math.random() * 900000);
+
 };
 
 /**
