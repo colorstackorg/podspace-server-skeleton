@@ -1,14 +1,8 @@
 import { APP } from '../utils/constants';
 import TextService, { client } from './TextService';
 
-/**
- * TODO: (6.05)
- * - Remove the ".skip" from the following function.
- * - Go to your terminal and run the following command:
- *        npm run test TextService
- * - Delete this comment.
- */
-describe.skip('TextService.sendText()', () => {
+
+describe('TextService.sendText()', () => {
   // Mock the twilio "sending" functionality.
   client.messages.create = jest.fn();
 

@@ -40,8 +40,15 @@ const sendText = async ({ message, to }: SendTextArgs): Promise<boolean> => {
 
   try {
     // Send the text
+    await client.messages.create({
+      body: message,
+      from: APP.TWILIO_PHONE_NUMBER,
+      to: to
+
+    });
   } catch (e) {
     // What should be return if sending the text was unsuccessful?
+    return false;
   }
 
   return true;
