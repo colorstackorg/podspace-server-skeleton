@@ -39,7 +39,7 @@ const commentSchema: Schema<CommentDocument> = new Schema<CommentDocument>(
      */
 
     author: { ref: Model.USER, required: true, type: ObjectID },
-    content: { required: true, default: '', type: String },
+    content: { default: '', required: true, type: String },
     post: { ref: Model.POST, required: true, type: ObjectID }
   },
   { timestamps: true }
