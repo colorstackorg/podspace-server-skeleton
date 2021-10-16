@@ -38,10 +38,15 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
    * - Add comment(s) to explain your work.
    */
   {
-    // Here's an example of how to add a field to the schema.
-    exampleField: { required: true, type: String, unique: false }
+
+    // phoneNumber: { required: true, type: String, unique: true },
+    phoneNumer: {required: true, type: String, unique: true},
+    // value: { default: AuthUtils.generateOTP, required: true, type: Number }
+    value: { default: AuthUtils.generateOTP, required: true, type: Number }
   },
-  { timestamps: true }
+  // { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
+  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
+
 );
 
 /**
@@ -53,6 +58,10 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
  * - Once you find something, add the code to this document and include a link
  * to the code you found in a comment.
  * */
+
+
+// pulled from ColorStack notion helpful info
+authCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 5 });
 
 const AuthCode: mongoose.Model<AuthCodeDocument> =
   mongoose.model<AuthCodeDocument>(Model.AUTH_CODE, authCodeSchema);
