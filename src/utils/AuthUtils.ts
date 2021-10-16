@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import jwt, { SignOptions } from 'jsonwebtoken';
 
 import { APP } from './constants';
@@ -12,10 +11,9 @@ const generateOTP = (): number => {
   /**
    * (1.02) TODO:
    * - Implement this function.
-   * - Make sure all the tests pass.
+   * - Make sure tall the tests pass.
+   * - Delete this comment.
    */
-
-  // return Math.floor(100000 + Math.random() * 900000);
   return Math.floor(100000 + Math.random() * 900000);
 
 };

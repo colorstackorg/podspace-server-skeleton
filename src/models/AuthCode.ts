@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import mongoose, { Document, Schema } from 'mongoose';
 
 import AuthUtils from '../utils/AuthUtils';
@@ -8,6 +7,7 @@ import { BaseModel } from '../utils/types';
 /**
  * (1.01) TODO:
  * - Read this interface.
+ * - Delete this comment once you've done so.
  */
 interface IAuthCode extends BaseModel {
   /**
@@ -34,11 +34,11 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
   /**
    * (1.03) TODO:
    * - Create the schema for the AuthCodes that we'll save in the database.
+   * - Delete this comment and the example field.
    * - Add comment(s) to explain your work.
    */
-
-  // Schema created based on IAuthCode
   {
+
     // phoneNumber: { required: true, type: String, unique: true },
     phoneNumer: {required: true, type: String, unique: true},
     // value: { default: AuthUtils.generateOTP, required: true, type: Number }
@@ -46,11 +46,12 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
   },
   // { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
+
 );
 
 /**
  * (1.04) TODO:
- * - Add a line of code here that will delete every document in the "AuthCode"
+ * - Add a line of code here that will elete every document in the "AuthCode"
  * collection after 5 minutes (60 seconds * 5).
  * - To be very clear, the only way you're going to figure this out is by
  * Googling around for the answer. The solution is one line.
@@ -58,8 +59,8 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
  * to the code you found in a comment.
  * */
 
+
 // pulled from ColorStack notion helpful info
-// authCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 5 });
 authCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 5 });
 
 const AuthCode: mongoose.Model<AuthCodeDocument> =
