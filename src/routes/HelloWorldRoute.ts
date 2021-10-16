@@ -21,5 +21,5 @@ export default class HelloWorldRoute extends BaseRoute<HelloWorldResult> {
       message: 'Looks like the server is up and running!',
       podmates: ['Chioma Okechukwu', 'Erick Gamez', 'Melissa Perez']
     };
-  }
-}
+  };
+};
