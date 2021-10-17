@@ -54,7 +54,7 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
      */
     author: { ref: Model.USER, required: true, type: ID },
     content: { required: true, type: String },
-    type: { required: false, type: string }
+    type: { required: false, type: String }
   },
   {
     timestamps: true,
