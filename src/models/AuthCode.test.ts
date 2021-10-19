@@ -1,14 +1,7 @@
 import { TEST_USER } from '../../jest.setup';
 import AuthCode from './AuthCode';
 
-/**
- * TODO: (1.05)
- * - Remove the ".skip" from the following function.
- * - Go to your terminal and run the following command:
- *        npm run test AuthCode
- * - Delete this comment.
- */
-describe.skip('Model: AuthCode', () => {
+describe('Model: AuthCode', () => {
   test('Should auto generate an OTP for value.', async () => {
     // Even though we don't specify a value for the OTP code, it should
     // automatically generate.

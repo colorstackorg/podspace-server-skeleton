@@ -2,19 +2,12 @@ import jwt, { SignOptions } from 'jsonwebtoken';
 
 import { APP } from './constants';
 
-/**
- * Returns a random 6 digit number used for OTP logins. The minimum value that
- * the first digit could be is 1, so this will never return a number with
- * all 0's.
- */
+// Returns a random 6 digit number used for OTP logins.
 const generateOTP = (): number => {
-  /**
-   * (1.02) TODO:
-   * - Implement this function.
-   * - Make sure tall the tests pass.
-   * - Delete this comment.
-   */
-  return 123456;
+  const randomFraction: number = Math.random();
+  const sixDigitNumber: number = randomFraction * 900000;
+  const sixDigitWholeNumber: number = Math.floor(sixDigitNumber);
+  return sixDigitWholeNumber + 100000;
 };
 
 /**

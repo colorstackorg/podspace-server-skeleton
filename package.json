@@ -6,8 +6,8 @@
   "description": "Skeleton backend code for the Sprout Fellowship '21 project.",
   "scripts": {
     "build": "tsc",
-    "copy-env:dev": "openssl base64 < ./.env.development | tr -d '\n' | pbcopy",
-    "copy-env:prod": "openssl base64 < ./.env.production | tr -d '\n' | pbcopy",
+    "copy-env:dev": "openssl base64 < ./.env.development | tr -d '\n' | cat",
+    "copy-env:prod": "openssl base64 < ./.env.production | tr -d '\n' | cat",
     "dev": "env-cmd -f ./.env.development ts-node-dev src/index.ts",
     "format": "prettier --ignore-path .gitignore --list-different \"**/*.+(ts|tsx)\"",
     "format:fix": "prettier --ignore-path .gitignore --write \"**/*.+(ts|tsx)\"",
