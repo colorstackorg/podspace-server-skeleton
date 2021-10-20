@@ -34,7 +34,7 @@ const commentSchema: Schema<CommentDocument> = new Schema<CommentDocument>(
      *  The author and post field come from other schemas.
      *  The content field is a string, default to empty since not all
      *  comments may have actual content. ex. Comment deleted
-     **/
+     */
 
     author: { ref: Model.USER, required: true, type: ID },
     content: { default: '', required: true, type: String },
