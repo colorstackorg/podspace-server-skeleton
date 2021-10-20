@@ -38,9 +38,9 @@ const commentSchema: Schema<CommentDocument> = new Schema<CommentDocument>(
      *  Todo: type is current ObjectID, not sure if it should be ID.
      */
 
-    author: { ref: Model.USER, required: true, type: ObjectID },
+    author: { ref: Model.USER, required: true, type: ID },
     content: { default: '', required: true, type: String },
-    post: { ref: Model.POST, required: true, type: ObjectID }
+    post: { ref: Model.POST, required: true, type: ID }
   },
   { timestamps: true }
 );
