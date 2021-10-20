@@ -46,9 +46,7 @@ const reactionSchema: Schema<ReactionDocument> = new Schema<ReactionDocument>(
 
     post: { ref: Model.POST, required: true, type: ID },
     type: { default: ReactionType.HEART, type: ReactionType },
-    user: { ref: Model.USER, required: true, type: ID },
-
-    exampleField: { required: true, type: String }
+    user: { ref: Model.USER, required: true, type: ID }
   },
   { timestamps: true }
 );
