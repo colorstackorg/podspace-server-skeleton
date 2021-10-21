@@ -7,11 +7,7 @@ import { CommentDocument } from './Comment';
 import { ReactionDocument } from './Reaction';
 import User, { UserDocument } from './User';
 
-/**
- * TODO: (3.01)
- * - Read this enum.
- * - Delete this comment.
- */
+
 export enum PostType {
   HELP = 'HELP', // Asking for help...
   TIL = 'TIL', // Today I learned...
