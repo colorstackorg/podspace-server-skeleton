@@ -46,7 +46,7 @@ export type PostDocument = Document<{}, {}, IPost> & IPost;
 const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
   {
     // adding fields to postSchema
-    author: { ref: Model.USER, required: true }, // author will be referencing the User model
+    author: { ref: Model.USER, required: true, type: ID }, // author will be referencing the User model
     content: { required: true, type: String }, // the content of the post is required, it will simply be a string
     type: { required: false, type: String }
   },
