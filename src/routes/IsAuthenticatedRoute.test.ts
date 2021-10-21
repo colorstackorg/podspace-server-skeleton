@@ -10,7 +10,7 @@ import TestUtils from '../utils/TestUtils';
  * - Delete this comment.
  */
 describe('GET /authenticated', () => {
-  test.only('If the user IS NOT authenticated, should return a 200 with false.', async () => {
+  test('If the user IS NOT authenticated, should return a 200 with false.', async () => {
     await TestUtils.agent
       .get('/authenticated')
       .expect(200)

@@ -15,7 +15,7 @@ export default class IsAuthenticatedRoute extends BaseRoute<boolean> {
        * - Delete this comment.
        */
       method: RouteMethod.GET,
-      path: '/user'
+      path: '/authenticated'
     });
   }
 
@@ -35,7 +35,11 @@ export default class IsAuthenticatedRoute extends BaseRoute<boolean> {
 
     // TODO: (10.06) If either the accessToken or the refreshToken are verified,
     // return true!
-    if (refreshToken.verfifyToken || accessToken.verifyToken) {
+
+    if (
+      AuthUtils.verifyToken(refreshToken) ||
+      AuthUtils.verifyToken(accessToken)
+    ) {
       return true;
     }
     return false;

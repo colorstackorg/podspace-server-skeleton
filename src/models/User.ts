@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import mongoose, { Document, Schema } from 'mongoose';
 
 import ImageService from '../services/ImageService';
