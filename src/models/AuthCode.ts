@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { string } from 'mathjs';
 import mongoose, { Document, Schema } from 'mongoose';
 

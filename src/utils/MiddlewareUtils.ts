@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { NextFunction, Response } from 'express';
 import mongoose, { FilterQuery } from 'mongoose';
 

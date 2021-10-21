@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { TEST_AUTH_COOKIE, TEST_USER } from '../../jest.setup';
 import TestUtils from '../utils/TestUtils';
 
@@ -8,7 +9,7 @@ import TestUtils from '../utils/TestUtils';
  *        npm run test GetMe
  * - Delete this comment.
  */
-describe.skip('GET /me', () => {
+describe('GET /me', () => {
   test('If the user is not authenticated, should return a 401.', async () => {
     await TestUtils.agent.get('/me').expect(401);
   });

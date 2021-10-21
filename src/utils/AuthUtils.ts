@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import jwt, { SignOptions } from 'jsonwebtoken';
 import { floor, random } from 'mathjs';
 
@@ -17,7 +18,7 @@ const generateOTP = (): number => {
    */
   let OTP = '';
 
-  for (let digit = 0; digit < 6; digit++) {
+  for (let digit = 0; digit < 6; digit += 1) {
     if (digit === 0) {
       OTP += String(Math.floor(Math.random() * 8 + 1));
     } else {
