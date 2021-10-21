@@ -7,7 +7,6 @@ import { CommentDocument } from './Comment';
 import Reaction, { ReactionDocument } from './Reaction';
 import User, { UserDocument } from './User';
 
-
 export enum PostType {
   HELP = 'HELP', // Asking for help...
   TIL = 'TIL', // Today I learned...
@@ -46,16 +45,9 @@ export type PostDocument = Document<{}, {}, IPost> & IPost;
 
 const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
   {
-    /**
-     * TODO: (3.03)
-     * - Create the schema for the Posts that we'll save in the database using
-     * the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
-     */
     // adding fields to postSchema
     author: { ref: Model.USER, required: true }, // author will be referencing the User model
-    content: { required: true, type: String }, //the content of the post is required, it will simply be a string 
+    content: { required: true, type: String }, //the content of the post is required, it will simply be a string
     type: { required: false, type: String }
   },
   {
