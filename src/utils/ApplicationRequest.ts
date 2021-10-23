@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Request } from 'express';
 
 import { UserDocument } from '../models/User';

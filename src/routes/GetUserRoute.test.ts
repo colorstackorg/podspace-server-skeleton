@@ -9,7 +9,7 @@ import TestUtils from '../utils/TestUtils';
  *        npm run test GetUser
  * - Delete this comment.
  */
-describe.skip('GET /users/:id', () => {
+describe('GET /users/:id', () => {
   let user: UserDocument = null;
 
   beforeAll(async () => {

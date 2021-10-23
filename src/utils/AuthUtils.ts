@@ -1,4 +1,6 @@
+/* eslint-disable prettier/prettier */
 import jwt, { SignOptions } from 'jsonwebtoken';
+import { floor, random } from 'mathjs';
 
 import { APP } from './constants';
 
@@ -14,7 +16,17 @@ const generateOTP = (): number => {
    * - Make sure tall the tests pass.
    * - Delete this comment.
    */
-  return 123456;
+  let OTP = '';
+
+  for (let digit = 0; digit < 6; digit += 1) {
+    if (digit === 0) {
+      OTP += String(Math.floor(Math.random() * 8 + 1));
+    } else {
+      OTP += String(Math.floor(Math.random() * 9));
+    }
+  }
+  return +OTP;
+  // the + in front of OTP converts it into a number
 };
 
 /**
