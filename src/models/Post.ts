@@ -7,22 +7,12 @@ import { CommentDocument } from './Comment';
 import { ReactionDocument } from './Reaction';
 import User, { UserDocument } from './User';
 
-/**
- * TODO: (3.01)
- * - Read this enum.
- * - Delete this comment.
- */
 export enum PostType {
   HELP = 'HELP', // Asking for help...
   TIL = 'TIL', // Today I learned...
   WIN = 'WIN' // Sharing a win...
 }
 
-/**
- * TODO: (3.02)
- * - Read this interface.
- * - Delete this comment once you've done so.
- */
 interface IPost extends BaseModel {
   /**
    * User that is associated with the creation of the post.
@@ -55,14 +45,9 @@ export type PostDocument = Document<{}, {}, IPost> & IPost;
 
 const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
   {
-    /**
-     * TODO: (3.03)
-     * - Create the schema for the Posts that we'll save in the database using
-     * the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
-     */
-    exampleField: { required: true, type: String }
+    author: { ref: Model.USER, required: true, type: ID },
+    content: { required: true, type: String },
+    type: { required: false, type: String }
   },
   {
     timestamps: true,
@@ -71,19 +56,21 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
   }
 );
 
-const sendNotification = async function (
-  author: PopulatedDoc<UserDocument, {} & string>
-) {
-  /**
-   * TODO: (6.04)
-   * - Send a text to all the users except for the author of this post letting
-   * them know that their podmate shared an update!
-   */
+const sendNotification = async function () {
+  const allMembers: UserDocument[] = await User.find();
+
+  // eslint-disable-next-line array-callback-return
+  allMembers.map((member) => {
+    TextService.sendText({
+      message: 'One of your podmates shared an update!',
+      to: member.phoneNumber
+    });
+  });
 };
 
 postSchema.pre('save', function () {
   if (this.isNew) {
-    sendNotification(this.author);
+    sendNotification();
   }
 });
 

@@ -5,11 +5,6 @@ import AuthUtils from '../utils/AuthUtils';
 import { Model } from '../utils/constants';
 import { AuthTokens, BaseModel } from '../utils/types';
 
-/**
- * (2.01) TODO:
- * - Read this interface.
- * - Delete this comment once you've done so.
- */
 interface IUser extends BaseModel {
   email?: string;
 
@@ -68,18 +63,18 @@ export type UserDocument = Document<{}, {}, IUser> &
 
 const userSchema: Schema<UserDocument> = new Schema<UserDocument>(
   {
-    /**
-     * (2.02) TODO:
-     * - Create the schema for the Users that we'll save in the database using
-     * the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
-     */
-    exampleField: { required: false, type: String, unique: false },
+    email: { required: false, sparse: true, type: String, unique: true },
+    firstName: { required: false, type: String },
+    instagramUrl: { required: false, type: String },
+    lastName: { required: false, type: String },
+    linkedInUrl: { required: false, type: String },
+    phoneNumber: { required: true, type: String, unique: true },
+    profilePictureKey: { required: false, type: String },
 
     // We shouldn't be returning the refreshToken when fetching a user from
     // the database, since that is sensitive information.
-    refreshToken: { required: false, select: false, type: String }
+    refreshToken: { required: false, select: false, type: String },
+    twitterUrl: { required: false, type: String }
   },
   {
     timestamps: true,
@@ -93,11 +88,6 @@ type TokenArgs = {
   id: string;
 };
 
-/**
- * (2.03) TODO:
- * - Read the below function and try to explain to yourself what's going on!
- * - Delete this comment.
- */
 /**
  * Creates and returns a new access and refresh token for the user. It also
  * persists the refresh token to the database, so we can associate the token

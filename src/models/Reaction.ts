@@ -5,11 +5,6 @@ import { BaseModel, ID } from '../utils/types';
 import { PostDocument } from './Post';
 import { UserDocument } from './User';
 
-/**
- * TODO: (4.01)
- * - Read this enum.
- * - Delete this comment.
- */
 export enum ReactionType {
   FIRE = 'FIRE', // 🔥
   HEART = 'HEART', // 💖
@@ -18,11 +13,6 @@ export enum ReactionType {
   SAD = 'SAD' // 😢
 }
 
-/**
- * TODO: (4.02)
- * - Read this interface.
- * - Delete this comment once you've done so.
- */
 interface IReaction extends BaseModel {
   /**
    * Post that was "reacted" to.
@@ -46,14 +36,9 @@ export type ReactionDocument = Document<{}, {}, IReaction> & IReaction;
 
 const reactionSchema: Schema<ReactionDocument> = new Schema<ReactionDocument>(
   {
-    /**
-     * TODO: (3.03)
-     * - Create the schema for the Reactions that we'll save in the database
-     * using the interface above as a reference.
-     * - Delete this comment and the example field.
-     * - Add comment(s) to explain your work.
-     */
-    exampleField: { required: true, type: String }
+    post: { ref: Model.POST, required: true, type: ID },
+    type: { default: ReactionType.HEART, required: true, type: String },
+    user: { ref: Model.USER, required: true, type: ID }
   },
   { timestamps: true }
 );
