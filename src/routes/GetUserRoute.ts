@@ -20,9 +20,9 @@ export default class GetUserRoute extends BaseRoute<UserDocument> {
        * - Fill in the path string with the appropriate path to this endpoint.
        * - Delete this comment.
        */
-      authenticated: false,
-      method: null,
-      path: '/'
+      authenticated: true,
+      method: RouteMethod.GET,
+      path: '/users/:id'
     });
   }
 
@@ -49,10 +49,12 @@ export default class GetUserRoute extends BaseRoute<UserDocument> {
    */
   async content(req: GetUserRequest): Promise<UserDocument> {
     // TODO: (11.03) Get the id of the user from the request parameters.
+    const { id } = req.params;
 
     // TODO: (11.04) Fetch the user associated with the ID.
+    const user: UserDocument = await User.findById(id);
 
     // TODO: (11.04) Return the user!
-    return null;
+    return user;
   }
 }
