@@ -16,8 +16,8 @@ export default class GetMeRoute extends BaseRoute<UserDocument> {
        * - Delete this comment.
        */
       authenticated: true,
-      method: null,
-      path: '/'
+      method: RouteMethod.GET,
+      path: '/me'
     });
   }
 
@@ -26,6 +26,6 @@ export default class GetMeRoute extends BaseRoute<UserDocument> {
    */
   async content(req: ApplicationRequest<IdArgs>): Promise<UserDocument> {
     // TODO: (10.02) Return the user object from the request!
-    return null;
+    return req.user;
   }
 }
