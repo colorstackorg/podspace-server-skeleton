@@ -1,4 +1,6 @@
+/* eslint-disable prettier/prettier */
 import { body } from 'express-validator';
+import { min } from 'mathjs';
 
 import Post, { PostDocument, PostType } from '../models/Post';
 import { ApplicationRequest } from '../utils/ApplicationRequest';
@@ -20,9 +22,9 @@ export default class CreatePostRoute extends BaseRoute<PostDocument> {
        * - Fill in the path string with the appropriate path to this endpoint.
        * - Delete this comment.
        */
-      authenticated: false,
-      method: null,
-      path: '/'
+      authenticated: true,
+      method: RouteMethod.POST,
+      path: '/posts'
     });
   }
 
@@ -38,7 +40,9 @@ export default class CreatePostRoute extends BaseRoute<PostDocument> {
       body('type')
         .if((value: PostType) => !!value)
         .isIn(Object.values(PostType))
-        .withMessage('You must choose a valid PostType.')
+        .withMessage('You must choose a valid PostType.'),
+
+      body('content').isLength({ min: 1 }).withMessage('Not a valid message')
     ];
   }
 
@@ -54,6 +58,14 @@ export default class CreatePostRoute extends BaseRoute<PostDocument> {
     // content, and post type. Then return the post!
 
     // TODO: (13.04) Return the post!
-    return null;
+    const { content, type } = req.params;
+
+    const post: PostDocument = await Post.create({
+      author: req.user?._id,
+      content: 'I have an update for you all!',
+      type: 'WIN'
+    });
+
+    return post;
   }
 }

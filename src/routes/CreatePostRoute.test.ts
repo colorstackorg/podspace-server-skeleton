@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { TEST_AUTH_COOKIE, TEST_USER } from '../../jest.setup';
 import Post, { PostDocument, PostType } from '../models/Post';
 import TestUtils from '../utils/TestUtils';
@@ -11,7 +12,7 @@ const TEST_POST_CONTENT = 'I have an update for you all!';
  *        npm run test CreatePost
  * - Delete this comment.
  */
-describe.skip('POST /posts', () => {
+describe('POST /posts', () => {
   test('If the user is not authenticated, should return a 401.', async () => {
     await TestUtils.agent
       .post('/posts')
