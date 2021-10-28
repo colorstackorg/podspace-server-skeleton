@@ -8,7 +8,6 @@ import BaseRoute from '../utils/BaseRoute';
 import { RouteMethod } from '../utils/constants';
 import RouteError from '../utils/RouteError';
 
-
 type LoginBody = Pick<UserDocument, 'phoneNumber'>;
 
 export default class LoginRoute extends BaseRoute<boolean> {
@@ -52,7 +51,6 @@ export default class LoginRoute extends BaseRoute<boolean> {
     // TODO: (7.03) Get the phone number from the request body.
     const { phoneNumber } = req.body;
 
-
     // TODO: (7.03) We should delete all codes that  previously existed for the
     // user.
     await AuthCode.deleteMany({ phoneNumber });
@@ -60,13 +58,10 @@ export default class LoginRoute extends BaseRoute<boolean> {
     // TODO: (7.03) Create a new AuthCode document in the database.
     const authCode: AuthCodeDocument = await AuthCode.create({ phoneNumber });
 
-
     // TODO: (7.03) Send a text to the user.
-    
 
     // TODO: (7.03) If the text was not sent, throw a new RouteError with status
     // code 500.
-    
 
     return true;
   }
