@@ -49,14 +49,11 @@ export default class LoginRoute extends BaseRoute<boolean> {
      * - Send a text to the user with the code.
      */
     // TODO: (7.03) Get the phone number from the request body.
-    const { phoneNumber } = req.body;
 
     // TODO: (7.03) We should delete all codes that  previously existed for the
     // user.
-    await AuthCode.deleteMany({ phoneNumber });
 
     // TODO: (7.03) Create a new AuthCode document in the database.
-    const authCode: AuthCodeDocument = await AuthCode.create({ phoneNumber });
 
     // TODO: (7.03) Send a text to the user.
 
