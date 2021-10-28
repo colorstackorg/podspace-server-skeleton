@@ -25,9 +25,9 @@ export default class UpdateMeRoute extends BaseRoute<UserDocument> {
        * - Fill in the path string with the appropriate path to this endpoint.
        * - Delete this comment.
        */
-      authenticated: false,
-      method: null,
-      path: '/'
+      authenticated: true,
+      method: RouteMethod.PATCH,
+      path: '/me'
     });
   }
 
@@ -53,6 +53,21 @@ export default class UpdateMeRoute extends BaseRoute<UserDocument> {
         .if((value: string) => Utils.isDefined(value) && !!value.length)
         .isURL()
         .withMessage('The Instagram URL must be a valid URL.'),
+
+      body('linkedInUrl')
+        .if((value: string) => Utils.isDefined(value) && !!value.length)
+        .isURL()
+        .withMessage('The LinkedIn URL must be a valid URL.'),
+
+      body('twitterUrl')
+        .if((value: string) => Utils.isDefined(value) && !!value.length)
+        .isURL()
+        .withMessage('The Twitter URL must be a valid URL.'),
+
+      body('lastName')
+        .if((value: string) => Utils.isDefined(value))
+        .isLength({ min: 1 })
+        .withMessage('Last name cannot be empty.'),
 
       multer().single('profilePicture')
     ];

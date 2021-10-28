@@ -9,7 +9,7 @@ import TestUtils from '../utils/TestUtils';
  *        npm run test UpdateMe
  * - Delete this comment.
  */
-describe.skip('PATCH /me', () => {
+describe('PATCH /me', () => {
   test('If the user is not authenticated, should return a 401.', async () => {
     await TestUtils.agent.patch('/me').expect(401);
   });
