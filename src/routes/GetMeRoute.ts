@@ -8,7 +8,7 @@ export default class GetMeRoute extends BaseRoute<UserDocument> {
   constructor() {
     super({
       /**
-       * TODO: (10.01)
+       * (10.01)
        * - Should the user be authenticated to hit this route?
        * - Replace null with the correct route type from the RouteMethod enum
        * in the constants.ts file.
@@ -16,8 +16,8 @@ export default class GetMeRoute extends BaseRoute<UserDocument> {
        * - Delete this comment.
        */
       authenticated: true,
-      method: null,
-      path: '/'
+      method: RouteMethod.GET,
+      path: '/me'
     });
   }
 
@@ -25,7 +25,8 @@ export default class GetMeRoute extends BaseRoute<UserDocument> {
    * Returns the logged-in user.
    */
   async content(req: ApplicationRequest<IdArgs>): Promise<UserDocument> {
-    // TODO: (10.02) Return the user object from the request!
+    // (10.02) Return the user object from the request!
+    return req.user;
     return null;
   }
 }
