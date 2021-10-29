@@ -8,7 +8,7 @@ import User, { UserDocument } from './User';
  *        npm run test User
  * - Delete this comment.
  */
-describe.skip('Model: User', () => {
+describe('Model: User', () => {
   test('User.renewToken() - Should update the refresh token.', async () => {
     const { _id, refreshToken } = TEST_USER;
     await TEST_USER.renewToken();
