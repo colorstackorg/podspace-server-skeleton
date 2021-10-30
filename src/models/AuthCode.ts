@@ -26,7 +26,8 @@ interface IAuthCode extends BaseModel {
 export type AuthCodeDocument = Document<{}, {}, IAuthCode> & IAuthCode;
 
 const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
-  { // Here's an example of how to add a field to the schema.
+  {
+    // Here's an example of how to add a field to the schema.
     phoneNumber: { required: true, type: String, unique: true },
     value: { default: AuthUtils.generateOTP, required: true, type: Number }
   },
