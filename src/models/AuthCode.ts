@@ -26,7 +26,6 @@ interface IAuthCode extends BaseModel {
 export type AuthCodeDocument = Document<{}, {}, IAuthCode> & IAuthCode;
 
 const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
-
   { // Here's an example of how to add a field to the schema.
     phoneNumber: { required: true, type: String, unique: true },
     value: { default: AuthUtils.generateOTP, required: true, type: Number }
@@ -34,7 +33,7 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
   { timestamps: true }
 );
 
-authCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60*5 });
+authCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 5 });
 
 const AuthCode: mongoose.Model<AuthCodeDocument> =
   mongoose.model<AuthCodeDocument>(Model.AUTH_CODE, authCodeSchema);
