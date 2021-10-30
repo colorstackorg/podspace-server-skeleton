@@ -12,17 +12,9 @@ type GetUserRequest = ApplicationRequest<IdArgs>;
 export default class GetUserRoute extends BaseRoute<UserDocument> {
   constructor() {
     super({
-      /**
-       * TODO: (11.01)
-       * - Should the user be authenticated to hit this route?
-       * - Replace null with the correct route type from the RouteMethod enum
-       * in the constants.ts file.
-       * - Fill in the path string with the appropriate path to this endpoint.
-       * - Delete this comment.
-       */
-      authenticated: false,
-      method: null,
-      path: '/'
+      authenticated: true,
+      method: RouteMethod.GET,
+      path: '/users/:id'
     });
   }
 
@@ -31,8 +23,6 @@ export default class GetUserRoute extends BaseRoute<UserDocument> {
    *  - params.id
    */
   middleware() {
-    // TODO: (11.02) Just read this and try your best to understand what's
-    // going on here.
     return [
       param('id')
         .custom(MiddlewareUtils.isMongoId)
@@ -48,11 +38,10 @@ export default class GetUserRoute extends BaseRoute<UserDocument> {
    * Returns the user with the given ID.
    */
   async content(req: GetUserRequest): Promise<UserDocument> {
-    // TODO: (11.03) Get the id of the user from the request parameters.
+    const { id } = req.params;
 
-    // TODO: (11.04) Fetch the user associated with the ID.
+    const user: UserDocument = await User.findById(id);
 
-    // TODO: (11.04) Return the user!
-    return null;
+    return user;
   }
 }
