@@ -18,15 +18,8 @@ type VerifyCodeRequest = ApplicationRequest<{}, VerifyCodeBody>;
 export default class VerifyCodeRoute extends BaseRoute<boolean> {
   constructor() {
     super({
-      /**
-       * TODO: (8.01)
-       * - Replace null with the correct route type from the RouteMethod enum
-       * in the constants.ts file.
-       * - Fill in the path string with the appropriate path to this endpoint.
-       * - Delete this comment.
-       */
-      method: null,
-      path: '/'
+      method: RouteMethod.POST,
+      path: '/verify'
     });
   }
 
@@ -36,14 +29,13 @@ export default class VerifyCodeRoute extends BaseRoute<boolean> {
    *  - body.phoneNumber
    */
   middleware() {
-    /**
-     * TODO: (8.02)
-     * - Add another validation in the returned array to verify that the code
-     * from the body of the request is a 6-digit number.
-     * - We've left in the code that will verify that the phone number is a
-     * valid US phone number and checks if its in our database.
-     */
     return [
+      body('code')
+        .isInt()
+        .withMessage('Invalid input. Expected an integer')
+        .isLength({max: 6, min: 6})
+        .withMessage('The code must be a 6-digit number'),
+
       body('phoneNumber')
         .isMobilePhone('en-US')
         .withMessage('The phone number you inputted was not valid.')
@@ -70,27 +62,29 @@ export default class VerifyCodeRoute extends BaseRoute<boolean> {
    * @throws {RouteError} - If the code does not match what is in DB.
    */
   async content(req: VerifyCodeRequest, res: Response): Promise<boolean> {
-    // TODO: (8.03) Get the code and phone number from the request body.
+    const {code, phoneNumber} = req.body;
 
-    // TODO: (8.04) Find the real code associated with the number from our
-    // database.
+    const authCode: AuthCodeDocument = await AuthCode.findOne({phoneNumber});
 
-    // TODO: (8.05) Compare the code we received in the request body with the
-    // one from our database. If they differ, throw a RouteError and them know
-    // what's wrong.
+    if (authCode.value !== code) {
+      throw new RouteError({
+        message: 'Invalid code!',
+        statusCode: 401
+      });
+    }
 
-    // TODO: (8.06) First try to get the user by fetching them from DB. But, if
-    // they don't already exist, then just create a new user.
-    const user: UserDocument = null;
+    let user: UserDocument = await User.findOne({phoneNumber});
+    
+    if (!user) {
+      user = await User.create({phoneNumber});
+    }
 
     // Renew's the user's tokens and attaches these new tokens on the
     // Express response object to send back to the client.
     const { accessToken, refreshToken } = await user.renewToken();
     MiddlewareUtils.attachTokens(res, { accessToken, refreshToken });
 
-    // TODO: (8.07) In the case that the user properly authenticates with the
-    // code, we no longer want to store the authentication code
-    // (it's short-lived), so we delete it!
+    await AuthCode.deleteOne({phoneNumber});
 
     return true;
   }
