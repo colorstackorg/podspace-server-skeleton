@@ -7,17 +7,9 @@ import { RouteMethod } from '../utils/constants';
 export default class LogoutRoute extends BaseRoute<boolean> {
   constructor() {
     super({
-      /**
-       * TODO: (9.01)
-       * - Should the user be authenticated to hit this route?
-       * - Replace null with the correct route type from the RouteMethod enum
-       * in the constants.ts file.
-       * - Fill in the path string with the appropriate path to this endpoint.
-       * - Delete this comment.
-       */
-      authenticated: false,
-      method: null,
-      path: '/'
+      authenticated: true,
+      method: RouteMethod.POST,
+      path: '/logout'
     });
   }
 
@@ -29,9 +21,9 @@ export default class LogoutRoute extends BaseRoute<boolean> {
    * Returns true in all cases.
    */
   async content(_: ApplicationRequest, res: Response): Promise<boolean> {
-    // TODO: (9.02) Use the res.clearCookie('') function to remove the
-    // accessToken and refreshToken from their cookies. Return true after!
+    res.clearCookie('accessToken');
+    res.clearCookie('refreshToken');
 
-    return false;
+    return true;
   }
 }
