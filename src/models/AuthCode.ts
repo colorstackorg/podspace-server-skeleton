@@ -4,7 +4,6 @@ import AuthUtils from '../utils/AuthUtils';
 import { Model } from '../utils/constants';
 import { BaseModel } from '../utils/types';
 
-
 interface IAuthCode extends BaseModel {
   /**
    * Phone number in which the OTP code is associated with.
@@ -28,15 +27,14 @@ export type AuthCodeDocument = Document<{}, {}, IAuthCode> & IAuthCode;
 
 const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
 
-  {
-    // Here's an example of how to add a field to the schema.
+  { // Here's an example of how to add a field to the schema.
     phoneNumber: { required: true, type: String, unique: true },
-    value: {default: AuthUtils.generateOTP, required: true, type: Number}
+    value: { default: AuthUtils.generateOTP, required: true, type: Number }
   },
   { timestamps: true }
 );
 
-authCodeSchema.index({ createdAt: 1}, { expireAfterSeconds: 60*5});
+authCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60*5 });
 
 const AuthCode: mongoose.Model<AuthCodeDocument> =
   mongoose.model<AuthCodeDocument>(Model.AUTH_CODE, authCodeSchema);

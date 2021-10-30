@@ -33,7 +33,7 @@ export default class VerifyCodeRoute extends BaseRoute<boolean> {
       body('code')
         .isInt()
         .withMessage('Invalid input. Expected an integer')
-        .isLength({max: 6, min: 6})
+        .isLength({ max: 6, min: 6 })
         .withMessage('The code must be a 6-digit number'),
 
       body('phoneNumber')
@@ -62,9 +62,9 @@ export default class VerifyCodeRoute extends BaseRoute<boolean> {
    * @throws {RouteError} - If the code does not match what is in DB.
    */
   async content(req: VerifyCodeRequest, res: Response): Promise<boolean> {
-    const {code, phoneNumber} = req.body;
+    const { code, phoneNumber } = req.body;
 
-    const authCode: AuthCodeDocument = await AuthCode.findOne({phoneNumber});
+    const authCode: AuthCodeDocument = await AuthCode.findOne({ phoneNumber });
 
     if (authCode.value !== code) {
       throw new RouteError({
@@ -73,10 +73,10 @@ export default class VerifyCodeRoute extends BaseRoute<boolean> {
       });
     }
 
-    let user: UserDocument = await User.findOne({phoneNumber});
-    
+    let user: UserDocument = await User.findOne({ phoneNumber });
+
     if (!user) {
-      user = await User.create({phoneNumber});
+      user = await User.create({ phoneNumber });
     }
 
     // Renew's the user's tokens and attaches these new tokens on the
@@ -84,7 +84,7 @@ export default class VerifyCodeRoute extends BaseRoute<boolean> {
     const { accessToken, refreshToken } = await user.renewToken();
     MiddlewareUtils.attachTokens(res, { accessToken, refreshToken });
 
-    await AuthCode.deleteOne({phoneNumber});
+    await AuthCode.deleteOne({ phoneNumber });
 
     return true;
   }
