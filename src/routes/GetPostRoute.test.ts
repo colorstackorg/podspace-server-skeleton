@@ -2,7 +2,6 @@ import { TEST_AUTH_COOKIE, TEST_USER } from '../../jest.setup';
 import Post, { PostDocument } from '../models/Post';
 import TestUtils from '../utils/TestUtils';
 
-
 describe('GET /posts/:id', () => {
   let post: PostDocument = null;
 
