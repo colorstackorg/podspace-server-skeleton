@@ -39,7 +39,8 @@ const authCodeSchema: Schema<AuthCodeDocument> = new Schema<AuthCodeDocument>(
    */
   {
     // Here's an example of how to add a field to the schema.
-    exampleField: { required: true, type: String, unique: false }
+    phoneNumber: { required: true, type: String, unique: true },
+    value: { default: AuthUtils.generateOTP, required: true, type: Number }
   },
   { timestamps: true }
 );
