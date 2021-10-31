@@ -25,7 +25,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'react/prop-types': 0,
     'no-unused-vars': 'off',
-    '@typescipt-eslint/no-unused-vars': ['error'],
+    //'@typescipt-eslint/no-unused-vars': ['error'],
     'prettier/prettier': ['error', { endOfLine: 'auto' }]
   }
 };
