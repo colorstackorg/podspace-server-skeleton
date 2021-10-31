@@ -8,7 +8,7 @@ import AuthCode from './AuthCode';
  *        npm run test AuthCode
  * - Delete this comment.
  */
-describe.skip('Model: AuthCode', () => {
+describe('Model: AuthCode', () => {
   test('Should auto generate an OTP for value.', async () => {
     // Even though we don't specify a value for the OTP code, it should
     // automatically generate.
