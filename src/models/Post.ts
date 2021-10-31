@@ -64,11 +64,17 @@ const postSchema: Schema<PostDocument> = new Schema<PostDocument>(
 const sendNotification = async function (
   author: PopulatedDoc<UserDocument, {} & string>
 ) {
-  /**
-   * TODO: (6.04)
-   * - Send a text to all the users except for the author of this post letting
-   * them know that their podmate shared an update!
-   */
+  const allUsers: UserDocument[] = await User.find();
+
+  // eslint-disable-next-line array-callback-return
+  allUsers.map((user) => {
+    if (user !== author) {
+      TextService.sendText({
+        message: 'One of your podmates shared an update',
+        to: user.phoneNumber
+      });
+    }
+  });
 };
 
 postSchema.pre('save', function () {
