@@ -12,17 +12,9 @@ type GetPostRequest = ApplicationRequest<IdArgs>;
 export default class GetPostRoute extends BaseRoute<PostDocument> {
   constructor() {
     super({
-      /**
-       * TODO: (14.01)
-       * - Should the user be authenticated to hit this route?
-       * - Replace null with the correct route type from the RouteMethod enum
-       * in the constants.ts file.
-       * - Fill in the path string with the appropriate path to this endpoint.
-       * - Delete this comment.
-       */
-      authenticated: false,
-      method: null,
-      path: '/'
+      authenticated: true,
+      method: RouteMethod.GET,
+      path: '/posts/:id'
     });
   }
 
@@ -31,8 +23,6 @@ export default class GetPostRoute extends BaseRoute<PostDocument> {
    *  - params.id
    */
   middleware() {
-    // TODO: (14.02) Read this validation code and try to understand what's
-    // going on!
     return [
       param('id')
         .custom(MiddlewareUtils.isMongoId)
@@ -51,11 +41,10 @@ export default class GetPostRoute extends BaseRoute<PostDocument> {
    *  - reactions
    */
   async content(req: GetPostRequest): Promise<PostDocument> {
-    // TODO: (14.03) Get the post's id from the request parameters.
+    const { id } = req.params;
 
-    // TODO: (14.03) Get the post with this id from our database.
+    const post: PostDocument = await Post.findById(id);
 
-    // TODO: (14.03) Return the post!
-    return null;
+    return post;
   }
 }

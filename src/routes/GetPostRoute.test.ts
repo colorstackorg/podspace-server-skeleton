@@ -2,14 +2,8 @@ import { TEST_AUTH_COOKIE, TEST_USER } from '../../jest.setup';
 import Post, { PostDocument } from '../models/Post';
 import TestUtils from '../utils/TestUtils';
 
-/**
- * TODO: (14.04)
- * - Remove the ".skip" from the following function.
- * - Go to your terminal and run the following command:
- *        npm run test GetPost
- * - Delete this comment.
- */
-describe.skip('GET /posts/:id', () => {
+
+describe('GET /posts/:id', () => {
   let post: PostDocument = null;
 
   beforeAll(async () => {
