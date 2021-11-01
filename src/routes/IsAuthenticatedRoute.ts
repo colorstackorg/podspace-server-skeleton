@@ -7,14 +7,14 @@ export default class IsAuthenticatedRoute extends BaseRoute<boolean> {
   constructor() {
     super({
       /**
-       * TODO: (10.04)
+       *  (10.04)
        * - Replace null with the correct route type from the RouteMethod enum
        * in the constants.ts file.
        * - Fill in the path string with the appropriate path to this endpoint.
        * - Delete this comment.
        */
-      method: null,
-      path: '/'
+      method: RouteMethod.GET,
+      path: '/authenticated'
     });
   }
 
@@ -28,11 +28,14 @@ export default class IsAuthenticatedRoute extends BaseRoute<boolean> {
    * Should use AuthUtils.verfifyToken()!
    */
   async content(req: ApplicationRequest): Promise<boolean> {
-    // TODO: (10.05) Get the accessToken and refreshToken from the request
+    // (10.05) Get the accessToken and refreshToken from the request
     // using req.cookies.
+    const { accessToken, refreshToken } = req.cookies ?? {};
 
-    // TODO: (10.06) If either the accessToken or the refreshToken are verified,
+    // (10.06) If either the accessToken or the refreshToken are verified,
     // return true!
-    return false;
+    return (
+      AuthUtils.verifyToken(accessToken) || AuthUtils.verifyToken(refreshToken)
+    );
   }
 }

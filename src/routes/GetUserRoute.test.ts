@@ -3,13 +3,13 @@ import User, { UserDocument } from '../models/User';
 import TestUtils from '../utils/TestUtils';
 
 /**
- * TODO: (11.05)
+ * (11.05)
  * - Remove the ".skip" from the following function.
  * - Go to your terminal and run the following command:
  *        npm run test GetUser
  * - Delete this comment.
  */
-describe.skip('GET /users/:id', () => {
+describe('GET /users/:id', () => {
   let user: UserDocument = null;
 
   beforeAll(async () => {
@@ -46,3 +46,5 @@ describe.skip('GET /users/:id', () => {
       });
   });
 });
+
+// To add ticket 10,11,12

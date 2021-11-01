@@ -76,7 +76,7 @@ const userSchema: Schema<UserDocument> = new Schema<UserDocument>(
 
     lastName: { required: false, type: String },
 
-    linkedInURL: { required: false, type: String },
+    linkedInUrl: { required: false, type: String },
 
     phoneNumber: { required: true, type: String, unique: true },
 
