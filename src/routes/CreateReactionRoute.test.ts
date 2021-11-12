@@ -10,7 +10,7 @@ import TestUtils from '../utils/TestUtils';
  *        npm run test CreateReaction
  * - Delete this comment.
  */
-describe.skip('POST /posts/:id/reactions', () => {
+describe('POST /posts/:id/reactions', () => {
   let post: PostDocument = null;
 
   beforeAll(async () => {
