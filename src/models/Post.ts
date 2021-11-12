@@ -73,10 +73,11 @@ const sendNotification = async function (
    */
   const allUsers: UserDocument[] = await User.find();
 
+  // eslint-disable-next-line array-callback-return
   allUsers.map((user) => {
     if (user !== author) {
       TextService.sendText({
-        message: 'One of your podmates has shared a post',
+        message: 'one of users shared an update',
         to: user.phoneNumber
       });
     }
