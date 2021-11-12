@@ -22,9 +22,9 @@ export default class CreateReactionRoute extends BaseRoute<ReactionDocument> {
        * - Fill in the path string with the appropriate path to this endpoint.
        * - Delete this comment.
        */
-      authenticated: false,
-      method: null,
-      path: '/'
+      authenticated: true,
+      method: RouteMethod.POST,
+      path: '/posts/:id/reactions'
     });
   }
 
@@ -60,10 +60,23 @@ export default class CreateReactionRoute extends BaseRoute<ReactionDocument> {
   async content(req: CreateReactionRequest): Promise<ReactionDocument> {
     // TODO: (16.03) Get the reaction type from the request body and the post
     // id from the request paramters.
+    try {
+      const { id } = req.params;
+      const { type } = req.body;
+      // TODO: (16.03) Create the reaction and associate it with the logged-in user.
 
-    // TODO: (16.03) Create the reaction and associate it with the logged-in user.
+      const reaction: ReactionDocument = await Reaction.create({
+        post: id,
+        type,
+        user: req.user
+      });
+
+      return reaction;
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
 
     // TODO: (16.03) Return the reaction!
-    return null;
   }
 }
